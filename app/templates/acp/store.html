@@ -1,0 +1,38 @@
+{% extends "acp/layout.html" %}
+
+{% block content %}
+
+    <a href="/acp/stores/">Все магазины</a>
+
+    <h1>{{ store['title'] }}, {{ store['city'] }}</h1>
+
+    {% if claims %}
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Дата</th>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>E-Mail</th>
+                    <th>Сообщение</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for claim in claims %}
+                    <tr>
+                        <td>{{ claim['id'] }}</td>
+                        <td>{{ claim['date'] }}</td>
+                        <td>{{ claim['name'] }}</td>
+                        <td>{{ claim['phone_number'] }}</td>
+                        <td>{{ claim['email'] }}</td>
+                        <td>{{ claim['text'] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        Пока нет пожеланий
+    {% endif %}
+
+{% endblock %}

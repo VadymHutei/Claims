@@ -1,6 +1,7 @@
 {% extends "acp/layout.html" %}
 
 {% block content %}
+
     <table>
         <thead>
             <tr>
@@ -24,10 +25,11 @@
                     <td>{{ stores[store_id]['franchisee'] }}</td>
                     <td>
                         <a href="/acp/stores/edit/{{ store_id }}">Редактировать</a>
-                        <a href="/acp/claims/{{ store_id }}">Просмотр</a>
+                        <a href="/acp/stores/{{ store_id }}">Просмотр</a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}

@@ -69,52 +69,41 @@ def acp_auth():
 # Магазины
 @app.route('/acp/stores/', methods=['GET'])
 def acp_stores():
-    # if not isAuth():
-    #     return redirect(url_for('acp_login'))
     stores = model.getStores()
     managers = model.getManagers()
     return render_template('acp/stores.html', stores=stores, managers=managers)
 
 @app.route('/acp/stores/<path:store_id>', methods=['GET'])
 def acp_store(store_id):
-    # if not isAuth():
-    #     return redirect(url_for('acp_login'))
-    return 'store {store_id}'.format(store_id=store_id)
+    store = model.getStore(store_id)
+    manager = model.getManager(store['manager_id'])
+    claims = model.getClaims(store_id)
+    return render_template('acp/store.html', store=store, manager=manager, claims=claims)
 
 @app.route('/acp/stores/edit/<path:store_id>', methods=['GET'])
 def acp_store_edit(store_id):
-    # if not isAuth():
-    #     return redirect(url_for('acp_login'))
-    stores = model.getStores()
+    store = model.getStore(store_id)
     managers = model.getManagers()
-    return render_template('acp/edit_store.html', store=stores[store_id], managers=managers)
+    return render_template('acp/edit_store.html', store=store, managers=managers)
 
 @app.route('/acp/store/update', methods=['POST'])
 def acp_store_update():
-    # if not isAuth():
-    #     return redirect(url_for('acp_login'))
     model.updateStore(request.form.to_dict())
     return redirect(url_for('acp_store_edit', store_id=request.form['id']))
 
 # Менеджеры
 @app.route('/acp/managers/', methods=['GET'])
 def acp_managers():
-    # if not isAuth():
-    #     return redirect(url_for('acp_login'))
     managers = model.getManagers()
     return render_template('acp/managers.html', managers=managers)
 
 @app.route('/acp/managers/edit/<path:manager_id>', methods=['GET'])
 def acp_manager_edit(manager_id):
-    # if not isAuth():
-    #     return redirect(url_for('acp_login'))
     managers = model.getManagers()
     return render_template('acp/edit_manager.html', manager=managers[int(manager_id)])
 
 @app.route('/acp/managers/update', methods=['POST'])
 def acp_manager_update():
-    # if not isAuth():
-    #     return redirect(url_for('acp_login'))
     model.updateМanager(request.form.to_dict())
     return redirect(url_for('acp_manager_edit', manager_id=request.form['id']))
 

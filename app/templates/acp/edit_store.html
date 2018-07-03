@@ -2,9 +2,9 @@
 
 {% block content %}
 
-    <h1>Редактирование магазина {{ store['title'] }}, {{ store['city'] }}</h1>
-
     <a href="/acp/stores/">Все магазины</a>
+
+    <h1>Редактирование магазина {{ store['title'] }}, {{ store['city'] }}</h1>
 
     <form action="/acp/store/update" method="post">
         <label>

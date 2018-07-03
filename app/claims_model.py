@@ -12,6 +12,22 @@ class Model():
         self._getClaims()
         self._getManagers()
 
+    def _update(self, arg):
+        now = datetime.datetime.now()
+        if arg == 'stores':
+            time_mark = self._stores_last_update
+            method = self._getStores
+        elif arg == 'claims':
+            time_mark = self._claims_last_update
+            method = self._getClaims
+        elif arg == 'managers':
+            time_mark = self._managers_last_update
+            method = self._getManagers
+        else:
+            return
+        if now - time_mark >= datetime.timedelta(minutes=15):
+            method()
+
     def _getStores(self):
         query = "SELECT * FROM `stores`"
         data = self.db.array_query(query)
@@ -37,19 +53,28 @@ class Model():
         self._managers_last_update = datetime.datetime.now()
 
     def getStores(self):
-        if datetime.datetime.now() - self._stores_last_update >= datetime.timedelta(minutes=15):
-            self._getStores()
+        self._update('stores')
         return self._stores
 
-    def getClaims(self):
-        if datetime.datetime.now() - self._claims_last_update >= datetime.timedelta(minutes=15):
-            self._getClaims()
-        return self._claims
+    def getStore(self, store_id):
+        self._update('stores')
+        return self._stores.get(store_id, None)
+
+    def getClaims(self, store_id):
+        self._update('claims')
+        claims = []
+        for claim_id in self._claims:
+            if self._claims[claim_id]['store_id'] == store_id:
+                claims.append(self._claims[claim_id])
+        return claims
 
     def getManagers(self):
-        if datetime.datetime.now() - self._managers_last_update >= datetime.timedelta(minutes=15):
-            self._getManagers()
+        self._update('managers')
         return self._managers
+
+    def getManager(self, manager_id):
+        self._update('managers')
+        return self._managers.get(manager_id, None)
 
     def updateStore(self, data):
         query = "UPDATE `stores` SET `title` = %s, `city` = %s, `link` = %s, `manager_id` = %s, `franchisee` = %s WHERE `id` = %s"
