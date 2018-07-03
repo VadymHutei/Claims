@@ -51,6 +51,30 @@ class Model():
             self._getManagers()
         return self._managers
 
+    def updateStore(self, data):
+        query = "UPDATE `stores` SET `title` = %s, `city` = %s, `link` = %s, `manager_id` = %s, `franchisee` = %s WHERE `id` = %s"
+        params = (
+            data.get('title', ''),
+            data.get('city', ''),
+            data.get('link', ''),
+            data.get('manager_id', ''),
+            'Y' if data.get('franchisee', False) else 'N',
+            data.get('id', '')
+        )
+        result = self.db.run_query(query, params)
+        self._getStores()
+
+    def updateМanager(self, data):
+        query = "UPDATE `managers` SET `name` = %s, `position` = %s, `email` = %s, WHERE `id` = %s"
+        params = (
+            data.get('name', ''),
+            data.get('position', ''),
+            data.get('email', ''),
+            data.get('id', '')
+        )
+        result = self.db.run_query(query, params)
+        self._getManagers()
+
     def log(self, title, text):
         date = datetime.datetime.now()
         query = "INSERT INTO `logs` (`date`, `title`, `text`) VALUES (%s, %s, %s)"

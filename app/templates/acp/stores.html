@@ -1,0 +1,33 @@
+{% extends "acp/layout.html" %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID магазина</th>
+                <th>Ссылка на страницу магазина</th>
+                <th>Город</th>
+                <th>Расположение</th>
+                <th>Менеджер</th>
+                <th>Франчайзи</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for store_id in stores %}
+                <tr>
+                    <td>{{ store_id }}</td>
+                    <td>{{ stores[store_id]['link'] }}</td>
+                    <td>{{ stores[store_id]['city'] }}</td>
+                    <td>{{ stores[store_id]['title'] }}</td>
+                    <td>{{ managers[stores[store_id]['manager_id']]['name'] }}</td>
+                    <td>{{ stores[store_id]['franchisee'] }}</td>
+                    <td>
+                        <a href="/acp/stores/edit/{{ store_id }}">Редактировать</a>
+                        <a href="/acp/claims/{{ store_id }}">Просмотр</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

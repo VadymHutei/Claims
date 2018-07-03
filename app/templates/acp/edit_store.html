@@ -1,0 +1,41 @@
+{% extends "acp/layout.html" %}
+
+{% block content %}
+
+    <h1>Редактирование магазина {{ store['title'] }}, {{ store['city'] }}</h1>
+
+    <a href="/acp/stores/">Все магазины</a>
+
+    <form action="/acp/store/update" method="post">
+        <label>
+            ID магазина
+            <input type="text" name="id" placeholder="ID Магазина" value="{{ store['id'] }}" readonly>
+        </label>
+        <label>
+            Город
+            <input type="text" name="city" placeholder="Город" value="{{ store['city'] }}" autocomplete="off">
+        </label>
+        <label>
+            Расположение
+            <input type="text" name="title" placeholder="Расположение" value="{{ store['title'] }}" autocomplete="off">
+        </label>
+        <label>
+            Ссылка на страницу магазина
+            <input type="url" name="link" placeholder="Ссылка на страницу магазина" value="{{ store['link'] }}" autocomplete="off">
+        </label>
+        <label>
+            Менеджер
+            <select name="manager_id">
+                {% for manager_id in managers %}
+                    <option value="{{ managers[manager_id]['id'] }}"{% if store['manager_id'] == managers[manager_id]['id'] %} selected{% endif %}>{{ managers[manager_id]['name'] }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Франчайзи
+            <input type="checkbox" name="franchisee"{% if store['franchisee'] == 'Y' %} checked{% endif %}>
+        </label>
+        <input type="submit" name="submit">
+    </form>
+
+{% endblock %}

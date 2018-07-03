@@ -1,0 +1,30 @@
+{% extends "acp/layout.html" %}
+
+{% block content %}
+    <table>
+        <thead>
+            <tr>
+                <th>ID Менеджера</th>
+                <th>ФИО</th>
+                <th>Должность</th>
+                <th>E-Mail</th>
+                <th>Фото</th>
+                <th>Действие</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for manager_id in managers %}
+                <tr>
+                    <td>{{ manager_id }}</td>
+                    <td>{{ managers[manager_id]['name'] }}</td>
+                    <td>{{ managers[manager_id]['position'] }}</td>
+                    <td>{{ managers[manager_id]['email'] }}</td>
+                    <td><img src="{{ managers[manager_id]['photo'] }}" width="100"></td>
+                    <td>
+                        <a href="/acp/managers/edit/{{ manager_id }}">Редактировать</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "acp/layout.html" %}
+
+{% block content %}
+
+    <h1>Редактирование менеджера {{ manager['name'] }}</h1>
+
+    <a href="/acp/managers/">Все менеджерs</a>
+
+    <form action="/acp/manager/update" method="post">
+        <label>
+            ID менеджера
+            <input type="text" name="id" placeholder="ID менеджера" value="{{ manager['id'] }}" readonly>
+        </label>
+        <label>
+            ФИО
+            <input type="text" name="name" placeholder="ФИО" value="{{ manager['name'] }}" autocomplete="off">
+        </label>
+        <label>
+            Должность
+            <input type="text" name="position" placeholder="Должность" value="{{ manager['position'] }}" autocomplete="off">
+        </label>
+        <label>
+            E-Mail
+            <input type="email" name="email" placeholder="E-Mail" value="{{ manager['email'] }}" autocomplete="off">
+        </label>
+        <input type="submit" name="submit">
+    </form>
+
+{% endblock %}
