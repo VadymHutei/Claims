@@ -1,6 +1,7 @@
 import datetime
 from random import choice
 from flask import Flask, render_template, request, redirect, url_for, make_response
+from claims_model import Model
 
 
 
@@ -8,6 +9,7 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 ACP_PASSWORD = '123'
 tokens = []
 app = Flask(__name__)
+model = Model()
 
 
 
@@ -30,6 +32,7 @@ def createToken():
     return token
 
 def login():
+    model.addAdminSession(request.headers.get('User-Agent', 'Unknown User-Agent'))
     token = createToken()
     expire_date = datetime.datetime.now()
     expire_date = expire_date + datetime.timedelta(days=30)
@@ -61,7 +64,7 @@ def acp_auth():
 
 @app.route('/acp/stores/', methods=['GET'])
 def acp_stores():
-    return 'stores'
+    return str(stores)
 
 @app.route('/acp/stores/<path:store_id>', methods=['GET'])
 def acp_store(store_id):
