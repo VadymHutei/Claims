@@ -2,7 +2,11 @@
 
 {% block content %}
 
-    <a href="/acp/managers/add/">Добавить</a>
+    <h1>Менеджеры</h1>
+
+    <div class="actions">
+        <a class="action_button add" href="/acp/managers/add/">Добавить</a>
+    </div>
 
     <table>
         <thead>
@@ -24,8 +28,8 @@
                     <td>{{ managers[manager_id]['email'] }}</td>
                     <td><img src="{{ managers[manager_id]['photo'] }}" width="100"></td>
                     <td>
-                        <a href="/acp/managers/edit/{{ manager_id }}">Редактировать</a>
-                        <a href="/acp/managers/delete/{{ manager_id }}">Удалить</a>
+                        <a class="action_button edit" href="/acp/managers/edit/{{ manager_id }}">Редактировать</a>
+                        <a class="action_button delete" href="/acp/managers/delete/{{ manager_id }}">Удалить</a>
                     </td>
                 </tr>
             {% endfor %}

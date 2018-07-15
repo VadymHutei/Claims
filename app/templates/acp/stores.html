@@ -2,7 +2,11 @@
 
 {% block content %}
 
-    <a href="/acp/stores/add/">Добавить</a>
+    <h1>Магазины</h1>
+
+    <div class="actions">
+        <a class="action_button add" href="/acp/stores/add/">Добавить</a>
+    </div>
 
     <table>
         <thead>
@@ -26,9 +30,9 @@
                     <td>{{ managers[stores[store_id]['manager_id']]['name'] }}</td>
                     <td>{{ stores[store_id]['franchisee'] }}</td>
                     <td>
-                        <a href="/acp/stores/{{ store_id }}">Просмотр</a>
-                        <a href="/acp/stores/edit/{{ store_id }}">Редактировать</a>
-                        <a href="/acp/stores/delete/{{ store_id }}">Удалить</a>
+                        <a class="action_button" href="/acp/stores/{{ store_id }}">Просмотр</a>
+                        <a class="action_button edit" href="/acp/stores/edit/{{ store_id }}">Редактировать</a>
+                        <a class="action_button delete" href="/acp/stores/delete/{{ store_id }}">Удалить</a>
                     </td>
                 </tr>
             {% endfor %}

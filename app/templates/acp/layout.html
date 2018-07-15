@@ -4,10 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GIULIA - пожелания - ACP</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/acp/main.css">
 </head>
 <body>
     <header>
-        <a href="/acp/">На главную</a>
+        <a class="header_link" href="/acp/">
+            <div class="header_button">На главную</div>
+        </a>
+        <a class="header_link" href="/acp/stores/">
+            <div class="header_button">Магазины</div>
+        </a>
+        <a class="header_link" href="/acp/managers/">
+            <div class="header_button">Менеджеры</div>
+        </a>
     </header>
     <main>
         {% block content %}{% endblock %}
