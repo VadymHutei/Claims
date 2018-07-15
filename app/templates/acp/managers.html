@@ -1,6 +1,9 @@
 {% extends "acp/layout.html" %}
 
 {% block content %}
+
+    <a href="/acp/managers/add/">Добавить</a>
+
     <table>
         <thead>
             <tr>
@@ -22,9 +25,11 @@
                     <td><img src="{{ managers[manager_id]['photo'] }}" width="100"></td>
                     <td>
                         <a href="/acp/managers/edit/{{ manager_id }}">Редактировать</a>
+                        <a href="/acp/managers/delete/{{ manager_id }}">Удалить</a>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
+
 {% endblock %}

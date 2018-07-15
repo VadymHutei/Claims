@@ -1,0 +1,41 @@
+{% extends "acp/layout.html" %}
+
+{% block content %}
+
+    <a href="/acp/stores/">Все магазины</a>
+
+    <h1>Добавление магазина</h1>
+
+    <form action="/acp/stores/insert" method="post" autocomplete="off">
+        <label>
+            ID магазина
+            <input type="text" name="id" placeholder="ID Магазина" value="{{ new_store_id }}" readonly>
+        </label>
+        <label>
+            Город
+            <input type="text" name="city" placeholder="Город">
+        </label>
+        <label>
+            Расположение
+            <input type="text" name="title" placeholder="Расположение">
+        </label>
+        <label>
+            Ссылка на страницу магазина
+            <input type="url" name="link" placeholder="Ссылка на страницу магазина">
+        </label>
+        <label>
+            Менеджер
+            <select name="manager_id">
+                {% for manager_id in managers %}
+                    <option value="{{ managers[manager_id]['id'] }}">{{ managers[manager_id]['name'] }}</option>
+                {% endfor %}
+            </select>
+        </label>
+        <label>
+            Франчайзи
+            <input type="checkbox" name="franchisee">
+        </label>
+        <input type="submit" name="submit">
+    </form>
+
+{% endblock %}

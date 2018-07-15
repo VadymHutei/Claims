@@ -19,7 +19,8 @@ class DB:
                 cursor.execute(query, data)
                 connection.commit()
                 result = True
-        except:
+        except Exception as e:
+            print(e)
             result = False
         finally:
             connection.close()

@@ -1,0 +1,25 @@
+{% extends "acp/layout.html" %}
+
+{% block content %}
+
+    <a href="/acp/managers/">Все менеджеры</a>
+
+    <h1>Добавление менеджера</h1>
+
+    <form action="/acp/managers/insert" method="post" autocomplete="off">
+        <label>
+            ФИО
+            <input type="text" name="name" placeholder="ФИО" required>
+        </label>
+        <label>
+            Должность
+            <input type="text" name="position" placeholder="Должность" required>
+        </label>
+        <label>
+            E-Mail
+            <input type="text" name="email" placeholder="E-Mail">
+        </label>
+        <input type="submit" name="submit">
+    </form>
+
+{% endblock %}

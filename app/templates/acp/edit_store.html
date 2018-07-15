@@ -6,7 +6,7 @@
 
     <h1>Редактирование магазина {{ store['title'] }}, {{ store['city'] }}</h1>
 
-    <form action="/acp/store/update" method="post">
+    <form action="/acp/stores/update" method="post">
         <label>
             ID магазина
             <input type="text" name="id" placeholder="ID Магазина" value="{{ store['id'] }}" readonly>

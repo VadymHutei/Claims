@@ -2,20 +2,22 @@
 
 {% block content %}
 
+    <a href="/acp/stores/add/">Добавить</a>
+
     <table>
         <thead>
             <tr>
-                <th>ID магазина</th>
-                <th>Ссылка на страницу магазина</th>
-                <th>Город</th>
-                <th>Расположение</th>
-                <th>Менеджер</th>
-                <th>Франчайзи</th>
+                <th><a href="?sort=id">ID магазина</a></th>
+                <th><a href="?sort=link">Ссылка на страницу магазина</a></th>
+                <th><a href="?sort=city">Город</a></th>
+                <th><a href="?sort=title">Расположение</a></th>
+                <th><a href="?sort=manager_id">Менеджер</a></th>
+                <th><a href="?sort=franchisee">Франчайзи</a></th>
                 <th>Действие</th>
             </tr>
         </thead>
         <tbody>
-            {% for store_id in stores %}
+            {% for store_id in sorted_stores_ids %}
                 <tr>
                     <td>{{ store_id }}</td>
                     <td>{{ stores[store_id]['link'] }}</td>
@@ -24,8 +26,9 @@
                     <td>{{ managers[stores[store_id]['manager_id']]['name'] }}</td>
                     <td>{{ stores[store_id]['franchisee'] }}</td>
                     <td>
-                        <a href="/acp/stores/edit/{{ store_id }}">Редактировать</a>
                         <a href="/acp/stores/{{ store_id }}">Просмотр</a>
+                        <a href="/acp/stores/edit/{{ store_id }}">Редактировать</a>
+                        <a href="/acp/stores/delete/{{ store_id }}">Удалить</a>
                     </td>
                 </tr>
             {% endfor %}
