@@ -4,6 +4,9 @@ v.1.0/
 # MySQL data
 db/data/
 
+# CSS
+*.css.map
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
