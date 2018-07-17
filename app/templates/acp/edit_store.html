@@ -4,7 +4,7 @@
 
     <h1>Редактирование магазина {{ store['title'] }}, {{ store['city'] }}</h1>
 
-    <form action="/acp/stores/update" method="post">
+    <form class="edit_form" action="/acp/stores/update" method="post">
         <label>
             ID магазина
             <input type="text" name="id" placeholder="ID Магазина" value="{{ store['id'] }}" readonly>
@@ -15,7 +15,7 @@
         </label>
         <label>
             Расположение
-            <input type="text" name="title" placeholder="Расположение" value="{{ store['title'] }}" autocomplete="off">
+            <textarea name="title" placeholder="Расположение">{{ store['title'] }}</textarea>
         </label>
         <label>
             Ссылка на страницу магазина

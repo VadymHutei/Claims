@@ -4,7 +4,7 @@
 
     <h1>Редактирование менеджера {{ manager['name'] }}</h1>
 
-    <form action="/acp/managers/update" method="post">
+    <form class="edit_form" action="/acp/managers/update" method="post">
         <label>
             ID менеджера
             <input type="text" name="id" placeholder="ID менеджера" value="{{ manager['id'] }}" readonly>
@@ -15,7 +15,7 @@
         </label>
         <label>
             Должность
-            <input type="text" name="position" placeholder="Должность" value="{{ manager['position'] }}" autocomplete="off">
+            <textarea name="position" placeholder="Должность">{{ manager['position'] }}</textarea>
         </label>
         <label>
             E-Mail
