@@ -1,16 +1,11 @@
 import pymysql.cursors
+import conf
 
 class DB:
 
     def __init__(self):
-        self.param = {
-            'host': 'localhost',
-            'db': 'claims',
-            'user': 'root',
-            'password': 'root',
-            'charset': 'utf8mb4',
-            'cursorclass': pymysql.cursors.DictCursor
-        }
+        self.param = conf.DB_CURRENT_CONNECT_PARAMS
+        self.param.update({'cursorclass': pymysql.cursors.DictCursor})
 
     def run_query(self, query, data=()):
         connection = pymysql.connect(**self.param)
